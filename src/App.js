@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
-import '../App.css'
-import '../GridStyles.css'
+import './App.css'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import lightBlue from '@material-ui/core/colors/lightBlue'
-import { TopBar, SimpleBottomNavigation } from './Layout'
+import { TopBar, SimpleBottomNavigation } from './Components/Layout'
 import 'typeface-roboto'
 
-import MainContainer from './Content/MainContainer'
+import MainContainer from './Components/Content/MainContainer'
 
 /*Import Views*/
-import { People, Planets, Vehicles } from './Views'
+import { People, Planets, Vehicles, Films, Species } from './Components/Views'
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#dd437c'
+      main: '#00aeef'
     },
     secondary: lightBlue
   }
@@ -58,6 +57,7 @@ class App extends Component {
             <TopBar />
             <Switch>
               <Route exact path="/" component={MainContainer} />
+              <Route path="/species" component={Species} />
               <Route path="/people" component={People} />
               <Route path="/planets" component={Planets} />
               <Route path="/vehicles" component={Vehicles} />

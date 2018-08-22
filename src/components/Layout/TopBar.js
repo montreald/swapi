@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom'
 
 /*import items and component*/
 import ItemButtons from '../ItemButtons'
-import Search from '../Content/Search'
 
 export const styles = theme => ({
   root: {
@@ -22,6 +21,9 @@ export const styles = theme => ({
     '&$selected': {
       backgroundColor: theme.palette.action.selected
     }
+  },
+  flex: {
+    color: '#fff'
   },
   menuButton: {
     marginLeft: -12,
@@ -43,6 +45,7 @@ export const styles = theme => ({
 
 const links = [
   { isExact: true, linkTo: '/', textIn: 'Home' },
+  { isExact: false, linkTo: '/species', textIn: 'Species' },
   { isExact: false, linkTo: '/people', textIn: 'People' },
   { isExact: false, linkTo: '/planets', textIn: 'Planets' },
   { isExact: false, linkTo: '/vehicles', textIn: 'Vehicles' }
@@ -97,7 +100,10 @@ class TopBar extends Component {
               color="inherit"
               aria-label="Menu"
             >
-              <MenuIcon onClick={this.toggleDrawer('left', true)} />
+              <MenuIcon
+                classNane="muneIcon"
+                onClick={this.toggleDrawer('left', true)}
+              />
             </IconButton>
             <Typography
               variant="title"
@@ -107,7 +113,6 @@ class TopBar extends Component {
               Star Wars
             </Typography>
             <ItemButtons />
-            <Search />
           </Toolbar>
         </AppBar>
         <Drawer

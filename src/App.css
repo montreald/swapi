@@ -17,7 +17,9 @@
 .App-title {
   font-size: 1.5em;
 }
-
+.App button[class*='muneIcon']{
+  display: none;
+}
 [class*="App-list"] a> ul{
   padding-left: 10px;
 }
@@ -31,4 +33,14 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+@media (max-width: 660px) {
+  div[class*='rootButtons']{
+    display: none;
+  }
+
+  .App button[class*='muneIcon']{
+    display: inline-flex;
+  }
+
 }

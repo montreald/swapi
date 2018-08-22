@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import { ListItem, ListItemIcon, Devider } from '@material-ui/core'
 
-export default class People extends Component {
+const styles = theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  }
+})
+
+class People extends Component {
   constructor() {
     super()
     this.state = {
@@ -20,18 +31,26 @@ export default class People extends Component {
           return <li key={i}>{p.name}</li>
         })
         this.setState({ people: people })
-        console.log('state', this.state.people)
       })
   }
 
   render() {
+    const { classes } = this.props
     return (
-      <div className="contaiber">
-        <div className="container-1">
-          <h1>People</h1>
-          <ul>{this.state.people}</ul>
-        </div>
+      <div className={classes.root}>
+        <h1>People</h1>
+        <ListItem button>
+          <ListItemIcon>
+            <ul>{this.state.people}</ul>
+          </ListItemIcon>
+        </ListItem>
       </div>
     )
   }
 }
+
+People.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(People)

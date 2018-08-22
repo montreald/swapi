@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import { ListItem, ListItemIcon } from '@material-ui/core'
 
-export default class Vehicles extends Component {
+const styles = theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  }
+})
+
+class Vehicles extends Component {
   constructor() {
     super()
     this.state = {
@@ -20,18 +31,26 @@ export default class Vehicles extends Component {
           return <li key={i}>{p.name}</li>
         })
         this.setState({ vehicles: vehicles })
-        console.log('state', this.state.vehicles)
       })
   }
 
   render() {
+    const { classes } = this.props
     return (
-      <div className="contaiber">
-        <div className="container-1">
-          <h1>Vehicles</h1>
-          <ul>{this.state.vehicles}</ul>
-        </div>
+      <div className={classes.root}>
+        <h1>Vehicles</h1>
+        <ListItem button>
+          <ListItemIcon>
+            <ul>{this.state.vehicles}</ul>
+          </ListItemIcon>
+        </ListItem>
       </div>
     )
   }
 }
+
+Vehicles.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(Vehicles)

@@ -7,13 +7,15 @@ import green from '@material-ui/core/colors/green'
 import { Link } from 'react-router-dom'
 
 const styles = theme => ({
-  root: {
-    width: '30vw',
+  rootButtons: {
+    width: '50vw',
     display: 'flex',
     justifyContent: 'space-between',
     minWidth: 300,
     marginRight: 30,
-    marginLeft: 'auto'
+    marginLeft: '20vw',
+    margin: '0 auto',
+    alignSelf: 'center'
   },
   container: {
     display: 'flex',
@@ -78,7 +80,7 @@ const theme = createMuiTheme({
 function ItemButtons(props) {
   const { classes } = props
   return (
-    <div className={classes.root}>
+    <div className={classes.rootButtons}>
       <Button
         variant="outlined"
         component={Link}
@@ -102,6 +104,14 @@ function ItemButtons(props) {
         className={classes.button}
       >
         Vehicles
+      </Button>
+      <Button
+        variant="outlined"
+        component={Link}
+        to="/species"
+        className={classes.button}
+      >
+        Species
       </Button>
     </div>
   )

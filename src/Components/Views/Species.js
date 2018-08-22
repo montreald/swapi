@@ -12,25 +12,25 @@ const styles = theme => ({
   }
 })
 
-class Planets extends Component {
+class species extends Component {
   constructor() {
     super()
     this.state = {
-      planets: []
+      species: []
     }
   }
 
   componentDidMount() {
     return axios
-      .get('https://swapi.co/api/planets/')
+      .get('https://swapi.co/api/species/')
       .then(results => {
         return results
       })
       .then(respond => {
-        let planets = respond.data.results.map((p, i) => {
+        let species = respond.data.results.map((p, i) => {
           return <li key={i}>{p.name}</li>
         })
-        this.setState({ planets: planets })
+        this.setState({ species: species })
       })
   }
 
@@ -38,10 +38,10 @@ class Planets extends Component {
     const { classes } = this.props
     return (
       <div className={classes.root}>
-        <h1>Planets</h1>
+        <h1>Species</h1>
         <ListItem button>
           <ListItemIcon>
-            <ul>{this.state.planets}</ul>
+            <ul>{this.state.species}</ul>
           </ListItemIcon>
         </ListItem>
       </div>
@@ -49,8 +49,8 @@ class Planets extends Component {
   }
 }
 
-Planets.propTypes = {
+species.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Planets)
+export default withStyles(styles)(species)
