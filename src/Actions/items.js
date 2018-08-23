@@ -4,24 +4,24 @@ export const REQUEST_ITEMS = 'REQUEST_ITEMS'
 export const RECEIVE_ITEMS = 'RECEIVE_ITEMS'
 export const UPDATE_SRC = 'UPDATE_SRC'
 
-function updateSrcString(searchStr) {
+function updateResString(respondStr) {
   return {
     type: UPDATE_SRC,
-    searchStr
+    respondStr
   }
 }
 
-function requestItems(searchStr) {
+function requestItems(respondStr) {
   return {
     type: REQUEST_ITEMS,
-    searchStr
+    respondStr
   }
 }
 
-function receiveItems(searchStr, items) {
+function receiveItems(respondStr, items) {
   return {
     type: RECEIVE_ITEMS,
-    searchStr,
+    respondStr,
     items,
     receivedAt: Date.now()
   }
@@ -45,40 +45,6 @@ function prepareItems(array) {
 
   return combined
     .map(item => {
-      if (Object.hasOwnProperty.call(item, 'episode_id')) {
-        return {
-          type: 'film',
-          name: item.title,
-          episode_id: item.episode_id,
-          director: item.director,
-          producer: item.producer,
-          release_date: item.release_date
-        }
-      } else if (Object.hasOwnProperty.call(item, 'model')) {
-        return {
-          type: 'starship',
-          name: item.name,
-          model: item.model,
-          hyperdrive_rating: item.hyperdrive_rating,
-          manufacturer: item.manufacturer
-        }
-      } else if (Object.hasOwnProperty.call(item, 'classification')) {
-        return {
-          type: 'species',
-          name: item.name,
-          classification: item.classification,
-          designation: item.designation,
-          language: item.language
-        }
-      } else if (Object.hasOwnProperty.call(item, 'orbital_period')) {
-        return {
-          type: 'planet',
-          name: item.name,
-          gravity: item.gravity,
-          terrain: item.terrain,
-          population: item.population
-        }
-      }
       return {
         type: 'person',
         name: item.name,
@@ -89,33 +55,23 @@ function prepareItems(array) {
     })
     .sort(compareNames)
 }
-
-function fetchAllItems(searchStr) {
-  const endpoints = [
-    `https://swapi.co/api/people/?search=${searchStr}`,
-    `https://swapi.co/api/films/?search=${searchStr}`,
-    `https://swapi.co/api/starships/?search=${searchStr}`,
-    `https://swapi.co/api/species/?search=${searchStr}`,
-    `https://swapi.co/api/planets/?search=${searchStr}`
-  ]
+/*For including other research create if statement add the url in the endpoints array*/
+function fetchAllItems(respondStr) {
+  const endpoints = [`https://swapi.co/api/people/?search=${respondStr}`]
 
   return dispatch => {
-    /*
-     * TODO Prepare responses as they come back
-     * As opposed to in one go when all promises have returned as is current
-     */
-    dispatch(updateSrcString(searchStr))
-    dispatch(requestItems(searchStr))
+    dispatch(updateResString(respondStr))
+    dispatch(requestItems(respondStr))
     return Promise.all(
       endpoints.map(url => fetch(url).then(resp => resp.json()))
     )
       .then(array => prepareItems(array))
-      .then(json => dispatch(receiveItems(searchStr, json)))
+      .then(json => dispatch(receiveItems(respondStr, json)))
   }
 }
 
-function shouldFetchItems(state, searchStr) {
-  const posts = state.itemsBySearchString[searchStr]
+function shouldFetchItems(state, respondStr) {
+  const posts = state.itemsByrespondString[respondStr]
   if (!posts) {
     return true
   } else if (posts.isFetching) {
@@ -124,11 +80,11 @@ function shouldFetchItems(state, searchStr) {
   return false
 }
 
-export function fetchItemsIfNeeded(searchStr) {
+export function fetchItemsIfNeeded(respondStr) {
   return (dispatch, getState) => {
-    if (shouldFetchItems(getState(), searchStr)) {
-      return dispatch(fetchAllItems(searchStr))
+    if (shouldFetchItems(getState(), respondStr)) {
+      return dispatch(fetchAllItems(respondStr))
     }
-    return dispatch(updateSrcString(searchStr))
+    return dispatch(updateResString(respondStr))
   }
 }

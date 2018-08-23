@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -38,10 +38,10 @@ class People extends Component {
     const { classes } = this.props
     return (
       <div className={classes.root}>
-        <h1>People</h1>
+        <h1 className="results__title">People</h1>
         <ListItem button>
           <ListItemIcon>
-            <ul>{this.state.people}</ul>
+            <ul className="itemData">{this.state.people}</ul>
           </ListItemIcon>
         </ListItem>
       </div>

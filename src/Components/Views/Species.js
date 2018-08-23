@@ -38,10 +38,10 @@ class species extends Component {
     const { classes } = this.props
     return (
       <div className={classes.root}>
-        <h1>Species</h1>
+        <h1 className="results__title">Species</h1>
         <ListItem button>
           <ListItemIcon>
-            <ul>{this.state.species}</ul>
+            <ul className="itemData">{this.state.species}</ul>
           </ListItemIcon>
         </ListItem>
       </div>

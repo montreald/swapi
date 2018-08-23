@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   rootButtons: {
-    width: '50vw',
+    width: 'calc(100% - 60px)',
     display: 'flex',
     justifyContent: 'space-between',
     minWidth: 300,
     marginRight: 30,
-    marginLeft: '20vw',
+    marginLeft: 30,
     margin: '0 auto',
     alignSelf: 'center'
   },
@@ -81,6 +81,14 @@ function ItemButtons(props) {
   const { classes } = props
   return (
     <div className={classes.rootButtons}>
+      <Button
+        variant="outlined"
+        component={Link}
+        to="/"
+        className={classes.button}
+      >
+        Home
+      </Button>
       <Button
         variant="outlined"
         component={Link}

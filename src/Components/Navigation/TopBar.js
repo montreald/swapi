@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { Link } from 'react-router-dom'
 
 /*import items and component*/
-import ItemButtons from '../ItemButtons'
+import ItemButtons from './ItemButtons'
 
 export const styles = theme => ({
   root: {
@@ -101,7 +101,7 @@ class TopBar extends Component {
               aria-label="Menu"
             >
               <MenuIcon
-                classNane="muneIcon"
+                className="muneIcon"
                 onClick={this.toggleDrawer('left', true)}
               />
             </IconButton>

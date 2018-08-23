@@ -12,8 +12,9 @@ const styles = {
     width: '100%',
     position: 'fixed',
     bottom: 0,
-    backgroundColor: '#f3f3f3',
-    justifyContent: 'space-arount'
+    backgroundColor: '#fff',
+    borderTop: '1px solid #00aeef',
+    justifyContent: 'space-around'
   }
 }
 
