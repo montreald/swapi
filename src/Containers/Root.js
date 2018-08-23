@@ -7,11 +7,11 @@ import Layout from './Layout'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import lightBlue from '@material-ui/core/colors/lightBlue'
-import { TopBar, SimpleBottomNavigation } from '../components/Navigation'
+import { TopBar, SimpleBottomNavigation } from '../Components/Navigation'
 import 'typeface-roboto'
 
 /*Import Views*/
-import { People, Planets, Vehicles, Films, Species } from '../components/Views'
+import { People, Planets, Vehicles, Films, Species } from '../Components/Views'
 
 const store = configureStore()
 

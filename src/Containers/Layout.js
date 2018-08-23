@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchItemsIfNeeded } from '../Actions/items'
-import Search from '../components/Search'
-import Results from '../components/Results'
-import ContentCard from '../components/Content/ContentCard'
+import Search from '../Components/Search'
+import Results from '../Components/Results'
+import ContentCard from '../Components/Content/ContentCard'
 
 class AsyncApp extends Component {
   constructor(props) {
